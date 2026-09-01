@@ -1,0 +1,20 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="white", fontname="Arial", label="Processplattformens separata repos och samverkan", labelloc=t, fontsize=20];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12, fillcolor="#F7FBFF", color="#2F5597"];
+  edge [fontname="Arial", fontsize=10, color="#333333"];
+
+  admin [label="Admingränssnitt\nseparat repo\nprocesser, deploy, drift, behörighet", fillcolor="#EAF2F8"];
+  user [label="Processgränssnitt\nseparat repo\nmina uppgifter, mina ärenden", fillcolor="#EAF2F8"];
+  backend [label="Backend\nseparat repo\ngeneriskt process-API, behörighet, audit", fillcolor="#E2F0D9"];
+  workers [label="Workers\nseparat repo\norganisationsträd, mail, externa uppslag", fillcolor="#FFF2CC"];
+  flowable [label="Flowable\nprocessmotor\nBPMN, tasks, jobs, historik", fillcolor="#FCE4D6"];
+  db [label="Processplattformens databas\nMVP-datamodell", fillcolor="#F4CCCC"];
+
+  admin -> backend [label="/api/admin/*"];
+  user -> backend [label="/api/me, /api/tasks, /api/processes"];
+  backend -> flowable [label="Flowable REST"];
+  backend -> db [label="läs/skriv"];
+  workers -> backend [label="integration_job/status"];
+  flowable -> workers [label="worker-/service-steg"];
+  workers -> flowable [label="resultat till process"];
+}
