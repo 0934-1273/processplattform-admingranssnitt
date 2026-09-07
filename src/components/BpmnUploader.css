@@ -1,0 +1,107 @@
+/* Kortet som innehåller uppladdningen. */
+.bpmn-uploader {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 28px;
+  border: 1px solid var(--color-border);
+  border-top: 5px solid var(--color-red);
+  border-radius: 12px;
+  background-color: var(--color-white);
+  box-shadow: 0 4px 16px rgb(41 41 41 / 8%);
+}
+
+.bpmn-uploader h2 {
+  margin: 0 0 10px;
+  color: var(--color-purple);
+}
+
+.bpmn-uploader p {
+  margin: 0;
+}
+
+/* Placering av etikett och filväljare. */
+.file-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.file-field label {
+  font-weight: 700;
+}
+
+/* Utseende för filväljaren. */
+.file-field input {
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background-color: var(--color-gray-light);
+}
+
+.file-field input::file-selector-button {
+  margin-right: 12px;
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 6px;
+  background-color: var(--color-purple);
+  color: var(--color-white);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Visar information om vald fil. */
+.selected-file {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 16px;
+  border-left: 5px solid var(--color-purple);
+  border-radius: 6px;
+  background-color: var(--color-purple-light);
+}
+
+/* Visar fel vid ogiltig fil. */
+.error-message {
+  padding: 12px;
+  border-left: 5px solid var(--color-red);
+  background-color: #fff0f0;
+  font-weight: 700;
+}
+
+/* Knappen som senare skickar filen till backend. */
+.upload-button {
+  align-self: flex-start;
+  padding: 11px 18px;
+  border: 2px solid var(--color-red);
+  border-radius: 8px;
+  background-color: var(--color-red);
+  color: var(--color-black);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.upload-button:hover:not(:disabled) {
+  background-color: var(--color-white);
+}
+
+.upload-button:disabled {
+  border-color: var(--color-border);
+  background-color: var(--color-gray-light);
+  color: #767676;
+  cursor: not-allowed;
+}
+
+/* Förklarar att backend ännu inte är ansluten. */
+.upload-note {
+  color: #5d5d5d;
+  font-size: 0.875rem;
+}
+
+/* Visar att backend har tagit emot filen. */
+.success-message {
+  padding: 12px;
+  border-left: 5px solid var(--color-purple);
+  background-color: var(--color-purple-light);
+  font-weight: 700;
+}

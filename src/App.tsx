@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import BpmnUploader from './components/BpmnUploader'
 
 // Anger vilka sidor som kan visas.
 type PageId =
@@ -74,14 +75,19 @@ function App() {
           <span className="environment-badge">Utvecklingsmiljö</span>
         </header>
 
-        {/* Tillfälligt innehåll tills funktionerna byggs */}
-        <section className="content-card">
-          <h2>{activePageLabel}</h2>
-          <p>
-            Här kommer funktionerna för {activePageLabel.toLowerCase()} att
-            visas.
-          </p>
-        </section>
+        {/* Visar uppladdningen på Deploy-sidan. */}
+        {activePage === 'deploy' ? (
+          <BpmnUploader />
+        ) : (
+          /* Visar tillfälligt innehåll på övriga sidor. */
+          <section className="content-card">
+            <h2>{activePageLabel}</h2>
+            <p>
+              Här kommer funktionerna för {activePageLabel.toLowerCase()} att
+              visas.
+            </p>
+          </section>
+        )}
       </main>
     </div>
   )
