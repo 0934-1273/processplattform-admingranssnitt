@@ -33,3 +33,37 @@ export interface WorkflowInstance {
   status: string;
   editable: boolean;
 }
+
+// Svaret som backend skickar efter en uppladdning.
+export interface BpmnUploadResponse {
+  fileName: string
+  fileSize: number
+  message: string
+}
+
+// Skickar en BPMN-fil till backend.
+export async function uploadBpmnFile(
+  file: File,
+): Promise<BpmnUploadResponse> {
+  // FormData används för att skicka själva filen.
+  const formData = new FormData()
+  formData.append('file', file)
+
+  const response = await fetch(
+    'http://localhost:8080/api/admin/deployments',
+    {
+      method: 'POST',
+      body: formData,
+    },
+  )
+
+  // Läser svaret från backend.
+  const result = (await response.json()) as BpmnUploadResponse
+
+  // Gör ett felaktigt svar till ett fel i gränssnittet.
+  if (!response.ok) {
+    throw new Error(result.message)
+  }
+
+  return result
+}
