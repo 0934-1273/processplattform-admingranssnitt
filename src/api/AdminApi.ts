@@ -53,6 +53,12 @@ export async function uploadBpmnFile(
     'http://localhost:8080/api/admin/deployments',
     {
       method: 'POST',
+      // Simulerar tillfälligt en inloggad användare under lokal utveckling.
+      headers: {
+        'X-User-Id': 'local-user-1',
+        'X-User-Name': 'Lokal Testare',
+        'X-User-Groups': 'PROCESS_ADMIN, PROCESS_EDITOR',
+      },
       body: formData,
     },
   )
